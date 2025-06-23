@@ -20,9 +20,9 @@ const BlogSection = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        console.log('Starting fetch from /api/get-posts.php');
+        console.log('Starting fetch from /api/get-posts');
         setIsLoading(true);
-        const response = await fetch('/api/get-posts.php');
+        const response = await fetch('/api/get-posts');
         console.log('Response status:', response.status);
         console.log('Response ok:', response.ok);
 
