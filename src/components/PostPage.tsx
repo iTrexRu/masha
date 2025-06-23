@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom'; // Для получения параметров URL
-import Header from './Header'; // Предполагаемый путь к Header.tsx
-import Footer from './Footer'; // Предполагаемый путь к Footer.tsx
+import { useParams } from 'react-router-dom'; // Заменяем useSearchParams
+import Header from './Header';
+import Footer from './Footer';
 
 const PostPage = () => {
+  const { filename } = useParams<{ filename: string }>(); // Получаем filename из пути
   const [postContent, setPostContent] = useState<{ filename: string; content: string } | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [searchParams] = useSearchParams();
-  const filename = searchParams.get('filename'); // Получаем filename из URL
 
   useEffect(() => {
     const fetchPost = async () => {
