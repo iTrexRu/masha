@@ -16,4 +16,14 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    outDir: 'dist', // Явно указываем выходную папку
+    assetsDir: 'assets', // Папка для статических активов
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, 'index.html'),
+      },
+    },
+  },
+  publicDir: 'public', // Указываем, что public/ копируется в сборку
 }));
