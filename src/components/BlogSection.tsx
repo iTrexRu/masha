@@ -22,7 +22,7 @@ const BlogSection = () => {
       try {
         console.log('Starting fetch from /api/get-posts');
         setIsLoading(true);
-        const response = await fetch('/api/get-posts');
+        const response = await fetch('/api/get-posts'); // Обновлено с /api/get-posts.php
         console.log('Response status:', response.status);
         console.log('Response ok:', response.ok);
 
@@ -95,22 +95,23 @@ const BlogSection = () => {
   return (
     <section id="blog" className="py-20 bg-forest-50">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16 animate-on-scroll">
+        <div className="text-center mb-16"> {/* Удалён animate-on-scroll */}
           <h2 className="text-4xl font-bold gradient-text mb-6">Блог</h2>
           <p className="text-xl text-forest-600 max-w-3xl mx-auto">
             Полезные материалы о психологии предпринимательства, принятии решений и работе с эмоциями в бизнесе
           </p>
         </div>
 
-        <div className="animate-on-scroll">
+        <div> {/* Удалён animate-on-scroll */}
           <Carousel
             opts={{
               align: 'start',
               loop: true,
-              slidesToScroll: 1, // Changed to 1 for smoother scrolling
+              slidesToScroll: 1,
+              containScroll: 'trimSnaps',
             }}
             className="w-full max-w-6xl mx-auto"
-            style={{ minHeight: '400px' }} // Increased height for visibility
+            style={{ minHeight: '400px' }}
           >
             <CarouselContent className="-ml-2 md:-ml-4" style={{ display: 'flex', minHeight: '400px' }}>
               {blogPosts.length > 0 ? (
@@ -119,12 +120,13 @@ const BlogSection = () => {
                   return (
                     <CarouselItem
                       key={post.id}
-                      className="pl-2 md:pl-4 basis-1/4" // Simplified for debugging
-                      style={{ border: '1px solid blue', minWidth: '250px' }}
+                      className="pl-2 md:pl-4" // Удалён basis-1/4 для совместимости
+                      style={{ border: '1px solid blue', minWidth: '250px', maxWidth: '25%' }}
                     >
+                      <p style={{ color: 'red', fontSize: '20px' }}>Post: {post.title}</p> {/* Отладочный текст */}
                       <Card
                         className="h-full cursor-pointer transition-all duration-300 hover:shadow-lg hover:scale-105"
-                        style={{ backgroundColor: 'yellow' }} // Bright background for debugging
+                        style={{ backgroundColor: 'yellow', minHeight: '300px', width: '100%' }} // Явные размеры
                         onClick={() => handlePostClick(post.url)}
                       >
                         <CardContent className="p-0">
@@ -134,8 +136,10 @@ const BlogSection = () => {
                               alt={post.title}
                               className="w-full h-48 object-cover rounded-t-lg"
                               onError={(e) => {
-                                console.log(`Image failed to load: ${post.image}`);
-                                e.currentTarget.src = '/fallback-image.jpg'; // Add fallback
+                                if (e.currentTarget.src !== '/fallback-image.jpg') {
+                                  console.log(`Image failed to load: ${post.image}`);
+                                  e.currentTarget.src = '/fallback-image.jpg';
+                                }
                               }}
                             />
                             <div className="absolute top-4 right-4 bg-white/90 p-2 rounded-full">
@@ -165,8 +169,8 @@ const BlogSection = () => {
                 </CarouselItem>
               )}
             </CarouselContent>
-            <CarouselPrevious className="flex" /> {/* Always visible for debugging */}
-            <CarouselNext className="flex" /> {/* Always visible for debugging */}
+            <CarouselPrevious className="flex" />
+            <CarouselNext className="flex" />
           </Carousel>
         </div>
       </div>
