@@ -6,15 +6,19 @@
   "routes": [
     {
       "src": "/post/(.*)",
-      "dest": "/index.html" 
+      "dest": "/index.html"
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1" // Оставляем API маршруты
     },
     {
       "src": "/blog_posts/(.*)",
-      "dest": "/blog_posts/$1" 
+      "dest": "/blog_posts/$1"
     },
     {
       "src": "/(.*)",
-      "dest": "/index.html" 
+      "dest": "/index.html"
     }
   ]
 }
