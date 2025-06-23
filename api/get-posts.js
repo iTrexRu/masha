@@ -3,7 +3,7 @@ import path from 'path';
 
 export default function handler(req, res) {
   try {
-    const postsDir = path.join(process.cwd(), 'blog_posts');
+    const postsDir = path.join(process.cwd(), 'public/blog_posts'); // Обновлено
     const files = fs.readdirSync(postsDir).filter(file => file.endsWith('.txt'));
 
     const posts = files.map(file => {
