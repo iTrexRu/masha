@@ -61,8 +61,8 @@ const BlogSection = () => {
   const handlePostClick = (url: string) => {
     // Извлекаем filename из url (например, /blog_posts/2025-06-23-hello-world.txt)
     const filename = url.replace('/blog_posts/', '');
-    // Открываем новое окно с маршрутом /post и параметром filename
-    window.open(`/post?filename=${encodeURIComponent(filename)}`, '_blank', 'noopener,noreferrer');
+    // Открываем новое окно с маршрутом /post/:filename
+    window.open(`/post/${encodeURIComponent(filename)}`, '_blank', 'noopener,noreferrer');
   };
 
   console.log('Current state:', { isLoading, error, blogPostsLength: blogPosts.length });
