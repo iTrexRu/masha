@@ -22,7 +22,7 @@ const BlogSection = () => {
       try {
         console.log('Starting fetch from /api/get-posts');
         setIsLoading(true);
-        const response = await fetch('/api/get-posts'); // Обновлено с /api/get-posts.php
+        const response = await fetch('/api/get-posts');
         console.log('Response status:', response.status);
         console.log('Response ok:', response.ok);
 
@@ -95,14 +95,14 @@ const BlogSection = () => {
   return (
     <section id="blog" className="py-20 bg-forest-50">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16"> {/* Удалён animate-on-scroll */}
+        <div className="text-center mb-16">
           <h2 className="text-4xl font-bold gradient-text mb-6">Блог</h2>
           <p className="text-xl text-forest-600 max-w-3xl mx-auto">
             Полезные материалы о психологии предпринимательства, принятии решений и работе с эмоциями в бизнесе
           </p>
         </div>
 
-        <div> {/* Удалён animate-on-scroll */}
+        <div>
           <Carousel
             opts={{
               align: 'start',
@@ -120,13 +120,10 @@ const BlogSection = () => {
                   return (
                     <CarouselItem
                       key={post.id}
-                      className="pl-2 md:pl-4" // Удалён basis-1/4 для совместимости
-                      style={{ border: '1px solid blue', minWidth: '250px', maxWidth: '25%' }}
+                      className="pl-2 md:pl-4"
                     >
-                      <p style={{ color: 'red', fontSize: '20px' }}>Post: {post.title}</p> {/* Отладочный текст */}
                       <Card
-                        className="h-full cursor-pointer transition-all duration-300 hover:shadow-lg hover:scale-105"
-                        style={{ backgroundColor: 'yellow', minHeight: '300px', width: '100%' }} // Явные размеры
+                        className="h-full cursor-pointer transition-all duration-300 hover:shadow-lg hover:shadow-forest-300"
                         onClick={() => handlePostClick(post.url)}
                       >
                         <CardContent className="p-0">
@@ -146,7 +143,7 @@ const BlogSection = () => {
                               <ExternalLink size={16} className="text-forest-600" />
                             </div>
                           </div>
-                          <div className="p-6">
+                          <div className="p-6 bg-forest-50">
                             <div className="flex items-center text-sm text-forest-500 mb-3">
                               <Calendar size={16} className="mr-2" />
                               {new Date(post.date).toLocaleDateString('ru-RU', {
