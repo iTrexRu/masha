@@ -59,8 +59,8 @@ const BlogSection = () => {
   }, []);
 
   const handlePostClick = (url: string) => {
-    // Извлекаем filename из url (например, /blog_posts/2025-06-23-hello-world.txt)
-    const filename = url.replace('/blog_posts/', '');
+    // Извлекаем filename из url и удаляем .txt
+    const filename = url.replace('/blog_posts/', '').replace(/\.txt$/, '');
     // Открываем новое окно с маршрутом /post/:filename
     window.open(`/post/${encodeURIComponent(filename)}`, '_blank', 'noopener,noreferrer');
   };
