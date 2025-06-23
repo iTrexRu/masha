@@ -5,8 +5,16 @@
   "installCommand": "npm install --legacy-peer-deps",
   "routes": [
     {
+      "src": "/post/(.*)",
+      "dest": "/index.html" // Перенаправляем на React для обработки маршрута
+    },
+    {
       "src": "/blog_posts/(.*)",
-      "dest": "/blog_posts/$1"
+      "dest": "/blog_posts/$1" // Оставляем доступ к статическим файлам
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html" // Обрабатываем все остальные маршруты
     }
   ]
 }
