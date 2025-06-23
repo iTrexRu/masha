@@ -5,21 +5,8 @@
   "installCommand": "npm install --legacy-peer-deps",
   "routes": [
     {
-      "src": "/api/get-posts.php",
-      "dest": "/api/get-posts.php"
-    },
-    {
-      "src": "/api/get-post.php",
-      "dest": "/api/get-post.php"
-    },
-    {
       "src": "/blog_posts/(.*)",
       "dest": "/blog_posts/$1"
     }
-  ],
-  "functions": {
-    "api/get-posts.php": {
-      "runtime": "vercel-php@0.6.0"
-    }
-  }
+  ]
 }
