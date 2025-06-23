@@ -9,9 +9,8 @@ export default function handler(req, res) {
       return res.status(400).json({ error: 'No filename specified' });
     }
 
-    // Защита от path traversal
     const safeFilename = path.basename(filename);
-    const filepath = path.join(process.cwd(), 'blog_posts', safeFilename);
+    const filepath = path.join(process.cwd(), 'public/blog_posts', safeFilename); // Обновлено
 
     if (!fs.existsSync(filepath)) {
       return res.status(404).json({ error: 'File not found' });
